@@ -1,12 +1,13 @@
 ﻿using Barmeister.Cli.Commands;
 using Spectre.Cli;
 using System;
+using System.Threading.Tasks;
 
 namespace Barmeister.Cli
 {
     class Program
     {
-        public static int Main(string[] args)
+        public async static Task<int> Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
@@ -23,7 +24,7 @@ namespace Barmeister.Cli
                     .WithExample(new [] { "order", "<number of beverages>", "--mix-me-up" });
             });
 
-            return app.Run(args);
+            return await app.RunAsync(args);
         }
     }
 }

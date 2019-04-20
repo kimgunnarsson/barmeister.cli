@@ -1,10 +1,11 @@
 ﻿using Spectre.Cli;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Barmeister.Cli.Commands
 {
-    public sealed class OrderCommand : Command<OrderSettings>
+    public sealed class OrderCommand : AsyncCommand<OrderSettings>
     {
         private static Random RandomGenerator = new Random();
 
@@ -19,10 +20,10 @@ namespace Barmeister.Cli.Commands
             Wine, Cocktail, Drink, Whiskey
         };
 
-        public override int Execute(CommandContext context, OrderSettings settings)
+        public override Task<int> ExecuteAsync(CommandContext context, OrderSettings settings)
         {
             Handle(settings);
-            return 0;
+            return Task.FromResult(0);
         }
 
         private void Handle(OrderSettings settings)
